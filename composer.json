@@ -1,0 +1,25 @@
+{
+    "name": "staniislav/test-cifra-broker",
+    "authors": [
+        {
+            "name": "Stanislav Muratshin",
+            "email": "s_admin@mail.ru"
+        }
+    ],
+    "require": {},
+    "provide": {
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

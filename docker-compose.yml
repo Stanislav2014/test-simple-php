@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  web:
+    image: nginx:latest
+    working_dir: /srv/broker
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d
+      - ./:/srv/broker
+    depends_on:
+      - php
+  php:
+    image: php:7.4-fpm
+    build: docker/php
+    restart: unless-stopped
+    volumes:
+      - ./:/srv/broker
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: items_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./:/srv/broker
+
+volumes:
+  db-data:
